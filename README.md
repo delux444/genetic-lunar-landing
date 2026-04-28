@@ -4,7 +4,7 @@ An autonomous agent trained to land on the Moon using a Genetic Algorithm within
 
 ---
 
-## Project Overview test
+## Project Overview
 
 The goal of this project is to evolve a controller capable of performing a safe landing in the LunarLander environment. Instead of traditional Reinforcement Learning (RL), we use an evolutionary approach to optimize the controller's decision-making parameters.
 
