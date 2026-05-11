@@ -1,49 +1,103 @@
-# Lunar Lander: Genetic Algorithm Optimization
+# Lunar Lander: Touch-and-Go Neuroevolution
 
-An autonomous agent trained to land on the Moon using a Genetic Algorithm within the OpenAI Gymnasium environment. This project demonstrates the power of evolutionary strategies in solving control problems without gradient-based learning.
+This project implements an Autonomous Flight Pilot for the LunarLander-v3 environment using Genetic Algorithms (GA) to train a Neural Network.
+Unlike standard Reinforcement Learning, this uses Neuroevolution to optimize the weights and biases of the pilot's brain.
+
+The pilot is specifically trained for a "Touch-and-Go" mission:
+landing between the flags, taking off again, and maintaining stability.
 
 ---
 
-## Project Overview
+## Features
 
-The goal of this project is to evolve a controller capable of performing a safe landing in the LunarLander environment. Instead of traditional Reinforcement Learning (RL), we use an evolutionary approach to optimize the controller's decision-making parameters.
+    Genetic Optimization: Powered by PyGAD with adaptive mutation and tournament selection.
 
-## Tech Stack
+    Neural Network: A custom feed-forward MLP (8 inputs, 16 hidden neurons, 4 outputs) built with NumPy.
 
-Language: Python 3.x
-Simulation: Gymnasium (Lunar Lander v3)
-GA Framework: PyGAD
-Visualization: Matplotlib
+    Multithreaded Training: Parallel execution across 16 threads for rapid evolution.
 
-## How It Works
+    Live Dashboard: Real-time training statistics with a non-flickering ANSI terminal interface.
 
-Genome: Each individual represents a set of control parameters (gains) for the lander's engines.
-Fitness Function: Agents are evaluated based on the total reward accumulated during a simulation run (rewarding soft landings and penalizing crashes).
-
-## Evolutionary Loop:
-
-Selection: Top-performing agents are selected as parents.
-Crossover: Parent genes are combined to create offspring.
-Mutation: Random variations are introduced to explore new maneuvers.
+    Custom Fitness: Encourages landing and immediate re-ascent.
 
 ---
 
 ## Installation
-```bash
-# Clone the repository
-git clone https://github.com/your-username/lunar-lander-ga.git
+
+1. Clone the Repository
+
+``` bash
+git clone https://github.com/yourusername/lunar-lander-neuroevolution.git
 ```
-```bash
-# Install dependencies
-pip install gymnasium[lunar-lander] pygad matplotlib
+``` bash
+cd lunar-lander-neuroevolution
 ```
-```bash
-# Run the demonstration
+
+2. Create a Virtual Environment (Recommended)
+
+On Linux/macOS:
+
+``` bash
+python3 -m venv venv
+```
+
+``` bash
+source venv/bin/activate
+```
+
+3. Install Dependencies
+
+``` bash
+pip install gymnasium[box2d] numpy pygad
+```
+
+4. Start
+
+``` bash
 python main.py
 ```
+
+---
+
+## The Environment
+
+We use gymnasium's LunarLander-v3. The state space consists of 8 variables, including coordinates, velocity, angle, and leg contact sensors.
+The action space consists of 4 discrete actions: Do nothing, Fire Left Engine, Fire Main Engine, Fire Right Engine.
+
+## The Neural Network
+
+The pilot's brain is a simple Artificial Neural Network:
+
+    Input Layer (8): Receives landing data.
+
+    Hidden Layer (16): Process data using ReLU activation.
+
+    Output Layer (4): Determines the best action via Argmax.
+    The weights and biases are flattened into a "Chromosome" (vector of genes) for the Genetic Algorithm to manipulate.
+
+---
+
+## Fitness Function ("Touch-and-Go")
+
+The fitness_func determines how "fit" a pilot is. In this version, we modified the standard rewards:
+
+    Base Reward: Standard Gym rewards for stability and fuel efficiency.
+
+    Touchdown Bonus: A massive +100 bonus if the legs touch the ground for the first time.
+
+    Ascent Reward: Extra points if the pilot successfully gains altitude (obs[1] > 0.2) after the initial touchdown.
+
+---
+
+## Multithreading
+
+To prevent AssertionError in Box2D, the code uses threading.local().
+This ensures that every thread has its own isolated instance of the Gymnasium environment, allowing for safe 16-core parallel processing.
+
 ---
 
 ## Authors
-Michał Figołuszka - https://github.com/Michaleq24
 
-Karol Bieżuński - https://github.com/delux444
+Michał Figołuszka - ``` bash https://github.com/Michaleq24 ```
+
+Karol Bieżuński - ``` bash https://github.com/delux444 ```
