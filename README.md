@@ -6,6 +6,9 @@ Unlike standard Reinforcement Learning, this uses Neuroevolution to optimize the
 The pilot is specifically trained for a "Touch-and-Go" mission:
 landing between the flags, taking off again, and maintaining stability.
 
+
+https://github.com/user-attachments/assets/6a4abc2a-7557-4b4c-923f-c83dc36a3c88
+
 ---
 
 ## Installation
