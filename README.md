@@ -8,20 +8,6 @@ landing between the flags, taking off again, and maintaining stability.
 
 ---
 
-## Features
-
-    Genetic Optimization: Powered by PyGAD with adaptive mutation and tournament selection.
-
-    Neural Network: A custom feed-forward MLP (8 inputs, 16 hidden neurons, 4 outputs) built with NumPy.
-
-    Multithreaded Training: Parallel execution across 16 threads for rapid evolution.
-
-    Live Dashboard: Real-time training statistics with a non-flickering ANSI terminal interface.
-
-    Custom Fitness: Encourages landing and immediate re-ascent.
-
----
-
 ## Installation
 
 1. Clone the Repository
@@ -68,12 +54,11 @@ The action space consists of 4 discrete actions: Do nothing, Fire Left Engine, F
 
 The pilot's brain is a simple Artificial Neural Network:
 
-    Input Layer (8): Receives landing data.
+ - Input Layer (8): Receives landing data.
+ - Hidden Layer (16): Process data using ReLU activation.
+ - Output Layer (4): Determines the best action via Argmax.
 
-    Hidden Layer (16): Process data using ReLU activation.
-
-    Output Layer (4): Determines the best action via Argmax.
-    The weights and biases are flattened into a "Chromosome" (vector of genes) for the Genetic Algorithm to manipulate.
+   The weights and biases are flattened into a "Chromosome" (vector of genes) for the Genetic Algorithm to manipulate.
 
 ---
 
@@ -81,11 +66,9 @@ The pilot's brain is a simple Artificial Neural Network:
 
 The fitness_func determines how "fit" a pilot is. In this version, we modified the standard rewards:
 
-    Base Reward: Standard Gym rewards for stability and fuel efficiency.
-
-    Touchdown Bonus: A massive +100 bonus if the legs touch the ground for the first time.
-
-    Ascent Reward: Extra points if the pilot successfully gains altitude (obs[1] > 0.2) after the initial touchdown.
+- Base Reward: Standard Gym rewards for stability.
+- Touchdown Bonus: A massive +100 bonus if the legs touch the ground for the first time.
+- Ascent Reward: Extra points if the pilot successfully gains altitude (obs[1] > 0.2) after the initial touchdown.
 
 ---
 
