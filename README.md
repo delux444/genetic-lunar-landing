@@ -96,8 +96,7 @@ This ensures that every thread has its own isolated instance of the Gymnasium en
 
 ---
 
-## Authors
-
-Michał Figołuszka - ``` bash https://github.com/Michaleq24 ```
-
-Karol Bieżuński - ``` bash https://github.com/delux444 ```
+| Autor | Profil GitHub |
+| :--- | :--- |
+| Michał Figołuszka | [github.com/Michaleq24](https://github.com/Michaleq24) |
+| Karol Bieżuński | [github.com/delux444](https://github.com/delux444) |
