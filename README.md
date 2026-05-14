@@ -36,8 +36,12 @@ source venv/bin/activate
 
 3. Install Dependencies
 
+```bash
+pip install --upgrade pip
+```
+
 ``` bash
-pip install gymnasium[box2d] numpy pygad
+pip install "gymnasium[box2d]" numpy pygad swig
 ```
 
 4. Start
