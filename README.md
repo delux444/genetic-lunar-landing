@@ -40,6 +40,10 @@ source venv/bin/activate
 pip install --upgrade pip
 ```
 ```bash
+sudo dnf/apt/yay install swig python3.14-devel gcc-c++
+```
+
+```bash
 sudo dnf/apt/yay install SDL2-devel SDL2_image-devel SDL2_mixer-devel SDL2_ttf-devel portmidi-devel libX11-devel
 ```
 
