@@ -39,9 +39,12 @@ source venv/bin/activate
 ```bash
 pip install --upgrade pip
 ```
+```bash
+sudo dnf/apt/yay install SDL2-devel SDL2_image-devel SDL2_mixer-devel SDL2_ttf-devel portmidi-devel libX11-devel
+```
 
 ``` bash
-pip install "gymnasium[box2d]" numpy pygad swig
+pip install gymnasium "gymnasium[box2d]" numpy pygad swig
 ```
 
 4. Start
